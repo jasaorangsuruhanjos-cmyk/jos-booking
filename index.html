@@ -37,88 +37,143 @@ label{display:block;font-size:12px;font-weight:800;margin:15px 0 6px}input,texta
   </div>
   <h1>Butuh bantuan?<br>JOS siap bantu.</h1>
   <p>Pilih layanan, isi detail pekerjaan, lalu kirim booking ke admin. Praktis dari HP.</p>
-</header>
+<!doctype html>
 
-<main class="wrap">
-  <div class="section-head"><h2>Pilih layanan</h2><span>9 layanan tersedia</span></div>
-  <div class="grid" id="services">
-    <button class="service" data-service="Pindahan & Angkut Barang"><span class="ico">🚚</span><b>Pindahan</b><small>Angkut & pindahan</small></button>
-    <button class="service" data-service="Bongkar Muat / TKBM"><span class="ico">📦</span><b>Bongkar Muat</b><small>Tenaga kerja</small></button>
-    <button class="service" data-service="Cleaning Service"><span class="ico">🧹</span><b>Cleaning</b><small>Rumah, kos, kantor</small></button>
-    <button class="service" data-service="Potong Rumput"><span class="ico">🌿</span><b>Potong Rumput</b><small>Perawatan area</small></button>
-    <button class="service" data-service="Pertukangan"><span class="ico">🔨</span><b>Pertukangan</b><small>Perbaikan & pengerjaan</small></button>
-    <button class="service" data-service="Cuci Toren"><span class="ico">🚿</span><b>Cuci Toren</b><small>Pembersihan toren</small></button>
-    <button class="service" data-service="Kusen, Jendela & Aluminium"><span class="ico">🪟</span><b>Aluminium</b><small>Kusen & jendela</small></button>
-    <button class="service" data-service="Jasa Umum / Lainnya"><span class="ico">🛠️</span><b>Jasa Umum</b><small>Kebutuhan lainnya</small></button>
-    <button class="service" data-service="Pijat Relaksasi"><span class="ico">💆🏻</span><b>Pijat Relaksasi</b><small>60 / 90 / 120 menit</small></button>
-  </div>
-
-  <div class="feature"><div class="big">⚡</div><div><b>Booking langsung ke Admin JOS</b><p>Data pesanan dirapikan otomatis sebelum dikirim melalui WhatsApp.</p></div></div>
-    <div class="feature"><div class="big">✓</div><div><b>3 langkah sederhana</b><p>1. Pilih jasa &nbsp;•&nbsp; 2. Isi detail &nbsp;•&nbsp; 3. Kirim ke WhatsApp.</p></div></div>
-
-  <section class="panel" id="panel">
-    <div class="panel-title" id="panelTitle"></div>
-    <div class="panel-sub">Lengkapi data berikut agar admin dapat mengecek jadwal dan estimasi biaya.</div>
-    <div id="dynamic"></div>
-    <button class="primary" id="sendBtn">Kirim Booking ke WhatsApp</button>
-    <button class="secondary" id="backBtn">← Pilih layanan lain</button>
-    <div class="info">📌 Untuk pekerjaan tertentu, admin dapat meminta foto/video lokasi agar estimasi lebih akurat.</div>
-    <div class="success" id="success"><div class="check">✓</div><b>Booking siap dikirim</b><p>WhatsApp akan dibuka dengan data booking yang sudah tersusun.</p></div>
-  </section>
-<div style="margin:0 20px 4px;padding:16px;border:1px solid #e8e8eb;border-radius:18px;background:#fafafa">
-      <div style="font-size:13px;font-weight:800;margin-bottom:6px">📲 Bagikan Booking JOS</div>
-      <div style="font-size:11px;color:#777;line-height:1.5;margin-bottom:10px">Setelah halaman ini punya link publik, link tersebut bisa ditempel di Bio TikTok, Instagram, Status WhatsApp, atau dikirim langsung ke pelanggan.</div>
-      <button id="shareBtn" style="width:100%;border:0;border-radius:12px;padding:12px;background:#111;color:#fff;font-weight:800;cursor:pointer">Bagikan Halaman JOS</button>
-    </div>
-</main>
-<footer class="footer">JOS • Jasa Orang Suruhan<br><span class="wa">Booking cepat • Respon admin • Sesuai kebutuhan</span></footer>
-</div>
-
-<script>
-const panel=document.getElementById('panel'),dynamic=document.getElementById('dynamic'),title=document.getElementById('panelTitle');
-let current='';
-const common=`
-<label>Nama</label><input id="name" autocomplete="name" placeholder="Nama lengkap">
-<label>Lokasi pekerjaan</label><input id="location" placeholder="Alamat / lokasi">
-<label>Tanggal</label><input id="date" type="date">
-<label>Jam</label><input id="time" type="time">
-<label>Detail pekerjaan</label><textarea id="detail" placeholder="Contoh: kebutuhan, jumlah barang, ukuran area, kondisi pekerjaan, dll."></textarea>`;
-
-document.querySelectorAll('.service').forEach(btn=>btn.addEventListener('click',()=>{
- current=btn.dataset.service; title.textContent=current;
- if(current==='Pijat Relaksasi'){
-   dynamic.innerHTML=`<label>Durasi pijat</label><select id="duration"><option value="60 Menit|125000">60 Menit — Rp125.000</option><option value="90 Menit|175000">90 Menit — Rp175.000</option><option value="120 Menit|225000">120 Menit — Rp225.000</option></select><div class="pricebox"><div><small>Tarif pilihan</small></div><b id="price">Rp125.000</b></div>${common}`;
-   setTimeout(()=>document.getElementById('duration').addEventListener('change',e=>{
-     const price=e.target.value.split('|')[1];document.getElementById('price').textContent='Rp'+Number(price).toLocaleString('id-ID');
-   }),0);
- } else dynamic.innerHTML=common;
- panel.classList.add('active'); panel.scrollIntoView({behavior:'smooth',block:'start'});
-}));
-
-document.getElementById('backBtn').onclick=()=>{panel.classList.remove('active');document.getElementById('success').classList.remove('show')};
-
-document.getElementById('sendBtn').onclick=()=>{
- const get=id=>document.getElementById(id)?.value.trim();
- const name=get('name'),loc=get('location'),date=get('date'),time=get('time'),detail=get('detail')||'-';
- if(!name||!loc||!date||!time){alert('Mohon lengkapi Nama, Lokasi, Tanggal, dan Jam.');return}
- let lines=[`Halo Admin JOS, saya ingin booking.`,``,`📋 DATA BOOKING JOS`,`👤 Nama: ${name}`,`🛠️ Layanan: ${current}`,`📍 Lokasi: ${loc}`,`📅 Tanggal: ${date}`,`⏰ Jam: ${time}`];
- if(current==='Pijat Relaksasi'){
-   const [dur,price]=document.getElementById('duration').value.split('|');
-   lines.push(`💆 Durasi: ${dur}`,`💰 Tarif: Rp${Number(price).toLocaleString('id-ID')}`);
- }
- lines.push(`📝 Detail: ${detail}`,``,`Mohon dibantu cek jadwal dan estimasi biayanya. Terima kasih 🙏🏻`);
- const url='https://wa.me/6281990919227?text='+encodeURIComponent(lines.join('\n'));
- document.getElementById('success').classList.add('show');
- setTimeout(()=>window.open(url,'_blank'),250);
-};
-document.getElementById('shareBtn').onclick=async()=>{
-  const data={title:'JOS Booking System',text:'Booking layanan JOS secara online',url:location.href};
-  try{
-    if(navigator.share){await navigator.share(data);}
-    else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);alert('Link halaman sudah disalin.');}
-    else alert('Salin alamat halaman ini dari browser untuk dibagikan.');
-  }catch(e){}
-};
-</script>
-</body>
-</html>
+<html lang="id">  
+<head>  
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width,initial-scale=1">  
+<meta name="theme-color" content="#111111">  
+<title>JOS • Booking System</title>  
+<style>  
+:root{--ink:#111;--muted:#6d6d72;--line:#e8e8eb;--soft:#f6f6f7;--card:#fff}  
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#ececef;color:var(--ink);font-family:Inter,Arial,sans-serif}  
+.app{max-width:480px;min-height:100vh;margin:auto;background:#fff;overflow:hidden;box-shadow:0 0 40px rgba(0,0,0,.08)}  
+.hero{background:#111;color:#fff;padding:24px 20px 26px}.top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px}  
+.logo{width:46px;height:46px;border:2px solid #fff;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:17px;letter-spacing:-1px}.brand strong{font-size:21px}.brand small{display:block;color:#bdbdbd;margin-top:2px}.badge{font-size:11px;padding:7px 9px;border:1px solid #3d3d3d;border-radius:999px;color:#ddd}  
+.hero h1{font-size:27px;line-height:1.12;margin:28px 0 8px;max-width:350px}.hero p{margin:0;color:#c9c9c9;font-size:14px;line-height:1.5}  
+.wrap{padding:20px}.section-head{display:flex;align-items:end;justify-content:space-between;margin:3px 0 12px}.section-head h2{font-size:17px;margin:0}.section-head span{font-size:12px;color:var(--muted)}  
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.service{border:1px solid var(--line);background:var(--card);border-radius:17px;padding:15px;text-align:left;cursor:pointer;transition:.15s}.service:active{transform:scale(.98)}.service .ico{font-size:24px}.service b{display:block;margin-top:8px;font-size:13px}.service small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.3}  
+.feature{margin:18px 0;padding:16px;border-radius:18px;background:var(--soft);display:flex;gap:12px;align-items:center}.feature .big{font-size:28px}.feature b{font-size:14px}.feature p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.4}  
+.panel{display:none;margin-top:18px;border:1px solid var(--line);border-radius:20px;padding:18px;background:#fff}.panel.active{display:block}.panel-title{font-size:19px;font-weight:800}.panel-sub{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}  
+label{display:block;font-size:12px;font-weight:800;margin:15px 0 6px}input,textarea,select{width:100%;padding:12px 13px;border:1px solid #ddd;border-radius:12px;background:#fff;font:inherit;font-size:14px;outline:none}input:focus,textarea:focus,select:focus{border-color:#111}textarea{min-height:82px;resize:vertical}  
+.pricebox{margin-top:14px;padding:13px;border-radius:14px;background:#111;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}.pricebox small{color:#c7c7c7}.pricebox b{font-size:18px;text-align:right}  
+.primary,.secondary{width:100%;border:0;border-radius:13px;padding:13px;font-weight:800;font-size:14px;cursor:pointer}.primary{margin-top:16px;background:#111;color:#fff}.secondary{margin-top:9px;background:#f0f0f2;color:#111}  
+.info{margin-top:12px;background:#fafafa;border:1px solid var(--line);border-radius:13px;padding:12px;font-size:11px;color:#666;line-height:1.5}.success{display:none;text-align:center;padding:12px 0 3px}.success.show{display:block}.check{width:52px;height:52px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;margin:0 auto 10px;font-size:23px}.success b{font-size:18px}.success p{font-size:12px;color:#666;line-height:1.5}  
+.footer{padding:20px;text-align:center;color:#8a8a8f;font-size:11px}.wa{color:#111;font-weight:800}  
+@media(max-width:350px){.grid{grid-template-columns:1fr}.hero h1{font-size:24px}}  
+</style>  
+</head>  
+<body>  
+<div class="app">  
+<header class="hero"><div class="top"><div class="brand"><div class="logo">JOS</div><div><strong>Jasa Orang Suruhan</strong><small>Booking System</small></div></div><div class="badge">● ONLINE</div></div>  
+<h1>Butuh bantuan?<br>JOS siap bantu.</h1><p>Pilih layanan, isi detail pekerjaan, lalu kirim booking ke admin. Praktis dari HP.</p></header>  
+<main class="wrap">  
+<div class="section-head"><h2>Pilih layanan</h2><span>9 layanan tersedia</span></div>  
+<div class="grid" id="services">  
+<button class="service" data-service="Pindahan & Angkut Barang"><span class="ico">🚚</span><b>Pindahan</b><small>Angkut, pindahan & packing</small></button>  
+<button class="service" data-service="Bongkar Muat / TKBM"><span class="ico">📦</span><b>Bongkar Muat</b><small>Tenaga kerja bongkar muat</small></button>  
+<button class="service" data-service="Cleaning Service"><span class="ico">🧹</span><b>Home Cleaning</b><small>Rumah, kos, kantor</small></button>  
+<button class="service" data-service="Potong Rumput"><span class="ico">🌿</span><b>Potong Rumput</b><small>Pilih ukuran area</small></button>  
+<button class="service" data-service="Pertukangan"><span class="ico">🔨</span><b>Pertukangan</b><small>Perbaikan & pengerjaan</small></button>  
+<button class="service" data-service="Cuci Toren"><span class="ico">🚿</span><b>Cuci Toren</b><small>Pilih jumlah toren</small></button>  
+<button class="service" data-service="Kusen, Jendela & Aluminium"><span class="ico">🪟</span><b>Aluminium</b><small>Kusen, pintu, jendela, kitchen set</small></button>  
+<button class="service" data-service="Jasa Umum / Lainnya"><span class="ico">🛠️</span><b>Jasa Umum</b><small>Kebutuhan lainnya</small></button>  
+<button class="service" data-service="Pijat Relaksasi"><span class="ico">💆🏻</span><b>Pijat Relaksasi</b><small>60 / 90 / 120 menit</small></button>  
+</div>  
+<div class="feature"><div class="big">⚡</div><div><b>Booking langsung ke Admin JOS</b><p>Detail pesanan dan estimasi harga tersusun otomatis sebelum dikirim melalui WhatsApp.</p></div></div>  
+<div class="feature"><div class="big">✓</div><div><b>3 langkah sederhana</b><p>1. Pilih jasa • 2. Isi detail • 3. Kirim ke WhatsApp.</p></div></div>  
+<section class="panel" id="panel"><div class="panel-title" id="panelTitle"></div><div class="panel-sub">Lengkapi data berikut agar admin dapat mengecek jadwal dan detail pekerjaan.</div><div id="dynamic"></div>  
+<button class="primary" id="sendBtn">Kirim Booking ke WhatsApp</button><button class="secondary" id="backBtn">← Pilih layanan lain</button>  
+<div class="info">📌 Harga merupakan estimasi layanan sesuai pilihan. Untuk pekerjaan khusus, material, jarak, atau kondisi tertentu, admin akan mengonfirmasi biaya sebelum pekerjaan disetujui.</div>  
+<div class="success" id="success"><div class="check">✓</div><b>Booking siap dikirim</b><p>WhatsApp akan dibuka dengan data booking yang sudah tersusun.</p></div></section>  
+<div style="margin:0 0 4px;padding:16px;border:1px solid #e8e8eb;border-radius:18px;background:#fafafa"><div style="font-size:13px;font-weight:800;margin-bottom:6px">📲 Bagikan Booking JOS</div><div style="font-size:11px;color:#777;line-height:1.5;margin-bottom:10px">Bagikan link halaman ini melalui Bio TikTok, Instagram, Status WhatsApp, atau langsung ke pelanggan.</div><button id="shareBtn" style="width:100%;border:0;border-radius:12px;padding:12px;background:#111;color:#fff;font-weight:800;cursor:pointer">Bagikan Halaman JOS</button></div>  
+</main><footer class="footer">JOS • Jasa Orang Suruhan<br><span class="wa">Booking cepat • Respon admin • Sesuai kebutuhan</span></footer>  
+</div>  
+<script>  
+const panel=document.getElementById('panel'),dynamic=document.getElementById('dynamic'),title=document.getElementById('panelTitle');  
+let current='';  
+const money=n=>'Rp'+Number(n).toLocaleString('id-ID');  
+const common=`<label>Nama lengkap</label><input id="name" autocomplete="name" placeholder="Nama lengkap">  
+<label>Nomor WhatsApp</label><input id="customerPhone" type="tel" placeholder="Nomor yang bisa dihubungi">  
+<label>Lokasi pekerjaan</label><input id="location" placeholder="Alamat lengkap / lokasi">  
+<label>Tanggal</label><input id="date" type="date" min="${new Date().toISOString().slice(0,10)}">  
+<label>Jam</label><input id="time" type="time">  
+<label>Detail pekerjaan</label><textarea id="detail" placeholder="Jelaskan kebutuhan, kondisi lokasi, ukuran, atau catatan lain"></textarea>`;  
+const workerOptions=(label='Jumlah tenaga kerja')=>`<label>${label}</label><select id="workers"><option value="1">1 orang</option><option value="2">2 orang</option><option value="3">3 orang</option><option value="4">4 orang</option></select>`;  
+const select=(label,id,options)=>`<label>${label}</label><select id="${id}">${options}</select>`;  
+const priceBox=`<div class="pricebox"><div><small>Estimasi total booking</small><br><small>Sudah termasuk biaya admin</small></div><b id="price">—</b></div>`;  
+function baseFields(service){  
+ let fields='';  
+ if(service==='Potong Rumput'){  
+  fields=select('Ukuran area','size',`<option value="small">Kecil</option><option value="medium">Sedang</option><option value="large">Besar</option>`)  
+  +`<div id="workerWrap">${workerOptions()}</div>${priceBox}<div class="info">Area kecil: tarif dasar Rp150.000. Area sedang/besar: tarif dasar Rp200.000 per pekerja. Harga sudah termasuk admin 20%.</div>`;  
+ }else if(service==='Pindahan & Angkut Barang'){  
+  fields=workerOptions()+select('Tambahan jasa packing','packing',`<option value="no">Tidak perlu packing</option><option value="yes">Ya, tambah jasa packing</option>`)+priceBox+`<div class="info">Tarif dasar pindahan Rp200.000 per pekerja. Packing tambahan Rp75.000 per pekerja. Admin 20% sudah termasuk.</div>`;  
+ }else if(service==='Bongkar Muat / TKBM'){  
+  fields=workerOptions()+priceBox+`<div class="info">Tarif dasar Rp200.000 per pekerja, termasuk admin 20% pada harga akhir.</div>`;  
+ }else if(service==='Cleaning Service'){  
+  fields=workerOptions()+priceBox+`<div class="info">Tarif dasar Rp200.000 per pekerja, termasuk admin 20% pada harga akhir.</div>`;  
+ }else if(service==='Cuci Toren'){  
+  fields=select('Jumlah toren','tanks',`<option value="1">1 toren</option><option value="2">2 toren</option><option value="3">3 toren</option><option value="4">4 toren</option>`)+priceBox+`<div class="info">Tarif dasar Rp125.000 per toren, termasuk admin 20%. Tidak ada pilihan jumlah pekerja.</div>`;  
+ }else if(service==='Pijat Relaksasi'){  
+  fields=select('Durasi pijat','duration',`<option value="60">60 menit</option><option value="90">90 menit</option><option value="120">120 menit</option>`)+priceBox+`<div class="info">Harga sudah termasuk admin 20%.</div>`;  
+ }else if(service==='Pertukangan'){  
+  fields=select('Jenis pekerjaan','jobType',`<option value="Perbaikan ringan">Perbaikan ringan — ${money(120000)}</option><option value="Pemasangan rak atau gantungan">Pemasangan rak atau gantungan — ${money(120000)}</option><option value="Perbaikan engsel pintu">Perbaikan engsel pintu — ${money(120000)}</option><option value="Perbaikan pintu atau jendela">Perbaikan pintu atau jendela — ${money(180000)}</option><option value="Pemasangan perlengkapan rumah">Pemasangan perlengkapan rumah — ${money(180000)}</option><option value="Pekerjaan lainnya">Pekerjaan lainnya — konfirmasi harga</option>`)+priceBox+`<div class="info">Harga awal untuk pekerjaan ringan. Material belum termasuk; pekerjaan khusus akan dikonfirmasi admin.</div>`;  
+ }else if(service==='Kusen, Jendela & Aluminium'){  
+  fields=select('Jenis pekerjaan','alumType',`<option>Pemasangan kusen</option><option>Pemasangan pintu</option><option>Pemasangan jendela</option><option>Kitchen set aluminium</option><option>Pekerjaan aluminium lainnya</option>`)+`<div class="info">Harga berdasarkan ukuran, material, dan kebutuhan pekerjaan. Admin akan mengonfirmasi penawaran; total belum dapat dihitung otomatis.</div>`;  
+ }else{  
+  fields=select('Jenis kebutuhan','otherType',`<option>Jasa umum / lainnya</option><option>Potong rumput atau kebun</option><option>Bantuan rumah tangga</option><option>Angkut barang</option><option>Lainnya</option>`)+`<div class="info">Harga dikonfirmasi admin setelah detail kebutuhan diterima.</div>`;  
+ }  
+ return fields;  
+}  
+function calcPrice(){  
+ const get=id=>document.getElementById(id)?.value;  
+ let total=null;  
+ if(current==='Potong Rumput'){  
+  const size=get('size');  
+  if(size==='small'){total=180000;document.getElementById('workerWrap').style.display='none';}  
+  else {document.getElementById('workerWrap').style.display='block';total=240000*Number(get('workers')||1);}  
+ }else if(current==='Pindahan & Angkut Barang'){  
+  const n=Number(get('workers')||1);total=240000*n;if(get('packing')==='yes')total+=90000*n;  
+ }else if(current==='Bongkar Muat / TKBM'||current==='Cleaning Service'){  
+  total=240000*Number(get('workers')||1);  
+ }else if(current==='Cuci Toren'){  
+  total=150000*Number(get('tanks')||1);  
+ }else if(current==='Pijat Relaksasi'){  
+  total=({60:150000,90:210000,120:270000})[get('duration')||60];  
+ }else if(current==='Pertukangan'){  
+  const job=get('jobType');total=({'Perbaikan ringan':120000,'Pemasangan rak atau gantungan':120000,'Perbaikan engsel pintu':120000,'Perbaikan pintu atau jendela':180000,'Pemasangan perlengkapan rumah':180000})[job]??null;  
+ }  
+ const price=document.getElementById('price');  
+ if(price)price.textContent=total===null?'Konfirmasi admin':money(total);  
+ return total;  
+}  
+document.querySelectorAll('.service').forEach(btn=>btn.addEventListener('click',()=>{  
+ current=btn.dataset.service;title.textContent=current;dynamic.innerHTML=baseFields(current)+common;  
+ document.getElementById('success').classList.remove('show');  
+ dynamic.querySelectorAll('select').forEach(el=>el.addEventListener('change',calcPrice));  
+ calcPrice();panel.classList.add('active');panel.scrollIntoView({behavior:'smooth',block:'start'});  
+}));  
+document.getElementById('backBtn').onclick=()=>{panel.classList.remove('active');document.getElementById('success').classList.remove('show')};  
+document.getElementById('sendBtn').onclick=()=>{  
+ const get=id=>document.getElementById(id)?.value.trim();  
+ const name=get('name'),phone=get('customerPhone'),loc=get('location'),date=get('date'),time=get('time'),detail=get('detail')||'-';  
+ if(!name||!phone||!loc||!date||!time){alert('Mohon lengkapi nama, nomor WhatsApp, lokasi, tanggal, dan jam.');return}  
+ const total=calcPrice();  
+ const lines=[`Halo Admin JOS, saya ingin booking.`,``,`📋 DATA BOOKING JOS`,`👤 Nama: ${name}`,`📱 WhatsApp pelanggan: ${phone}`,`🛠️ Layanan: ${current}`,`📍 Lokasi: ${loc}`,`📅 Tanggal: ${date}`,`⏰ Jam: ${time}`];  
+ const val=id=>document.getElementById(id)?.value;  
+ if(current==='Potong Rumput'){lines.push(`🌿 Ukuran area: ${{small:'Kecil',medium:'Sedang',large:'Besar'}[val('size')]}`);if(val('size')!=='small')lines.push(`👷 Tenaga kerja: ${val('workers')} orang`);}  
+ if(current==='Pindahan & Angkut Barang'){lines.push(`👷 Tenaga kerja: ${val('workers')} orang`,`📦 Jasa packing: ${val('packing')==='yes'?'Ya':'Tidak'}`);}  
+ if(current==='Bongkar Muat / TKBM'||current==='Cleaning Service')lines.push(`👷 Tenaga kerja: ${val('workers')} orang`);  
+ if(current==='Cuci Toren')lines.push(`🚿 Jumlah toren: ${val('tanks')}`);  
+ if(current==='Pijat Relaksasi')lines.push(`💆 Durasi pijat: ${val('duration')} menit`);  
+ if(current==='Pertukangan')lines.push(`🔨 Jenis pekerjaan: ${val('jobType')}`);  
+ if(current==='Kusen, Jendela & Aluminium')lines.push(`🪟 Jenis pekerjaan: ${val('alumType')}`);  
+ if(current==='Jasa Umum / Lainnya')lines.push(`🛠️ Jenis kebutuhan: ${val('otherType')}`);  
+ lines.push(`💰 Estimasi harga: ${total===null?'Menunggu konfirmasi admin':money(total)}`,`📝 Detail: ${detail}`,``,`Mohon konfirmasi jadwal dan rincian biaya. Terima kasih 🙏🏻`);  
+ const url='https://wa.me/6281990919227?text='+encodeURIComponent(lines.join('\n'));  
+ document.getElementById('success').classList.add('show');window.open(url,'_blank');  
+};  
+document.getElementById('shareBtn').onclick=async()=>{const data={title:'JOS Booking System',text:'Booking layanan JOS secara online',url:location.href};try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);alert('Link halaman sudah disalin.')}else alert('Salin alamat halaman ini dari browser untuk dibagikan.')}catch(e){}};  
+</script></body></html>
