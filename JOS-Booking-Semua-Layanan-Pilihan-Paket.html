@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0756a5">
+<title>Booking Layanan JOS</title>
+<style>
+:root{--blue:#0756a5;--blue2:#1687dc;--pale:#eef7ff;--line:#d5e7fb;--text:#15314f;--muted:#647d99;--green:#08b77b;--orange:#ff9d24}
+*{box-sizing:border-box}body{margin:0;background:#edf3f9;color:var(--text);font-family:Arial,Helvetica,sans-serif}.page{max-width:540px;margin:auto;min-height:100vh;background:white;box-shadow:0 0 24px #123b6010}
+header{padding:15px 18px;background:white;border-bottom:1px solid #e5edf6;display:flex;align-items:center;justify-content:space-between;gap:10px}.brand{color:var(--blue);font-weight:900;font-size:30px;letter-spacing:-1px;line-height:1}.brand small{display:block;font-size:9px;letter-spacing:.8px;margin-top:4px}.admin{font-size:11px;color:var(--blue);text-decoration:none;font-weight:700;border:1px solid var(--line);border-radius:22px;padding:9px 11px;white-space:nowrap}.hero{background:linear-gradient(120deg,#064787,#1788d8);padding:22px 18px;color:white}.hero h1{margin:0 0 7px;font-size:24px}.hero p{margin:0;font-size:13px;line-height:1.5}
+main{padding:16px 13px 24px}h2{font-size:18px;color:var(--blue);margin:2px 2px 5px}.sub{font-size:12px;color:var(--muted);line-height:1.5;margin:0 2px 14px}
+.service-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{position:relative;text-align:left;border:1px solid var(--line);border-radius:14px;padding:13px;background:linear-gradient(145deg,#fff,#f1f8ff);cursor:pointer;color:var(--text);min-height:133px;box-shadow:0 3px 9px #0756a508}.card.selected{border:2px solid var(--blue2);background:#eaf6ff;box-shadow:0 0 0 3px #1687dc16}.card .icon{font-size:25px;display:block;margin-bottom:7px}.card .title{display:block;color:var(--blue);font-size:14px;font-weight:800;line-height:1.3;padding-right:18px}.card .meta{display:block;font-size:11px;color:#607890;margin-top:5px;line-height:1.4}.card .price{display:block;margin-top:8px;font-size:13px;font-weight:800;color:#08734f}.card .check{position:absolute;right:10px;top:10px;border:1px solid #a9c8e8;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;color:white}.card.selected .check{background:var(--blue);border-color:var(--blue)}
+.panel{margin-top:15px;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fbfdff}.panel h3{margin:0 0 11px;color:var(--blue);font-size:16px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:10px 0;font-size:13px}.row label{font-weight:700}.row select,.row input{font:inherit;border:1px solid #cfe2f9;border-radius:9px;background:white;padding:10px;width:58%;color:var(--text)}.summary{background:#eef7ff;border:1px solid #cfe5fb;border-radius:12px;padding:12px;margin-top:13px}.sumrow{display:flex;justify-content:space-between;gap:12px;font-size:13px;margin:7px 0}.sumrow.total{border-top:1px solid #c9dff5;padding-top:10px;margin-top:10px;font-size:16px;font-weight:800;color:var(--blue)}.muted{font-size:11px;line-height:1.45;color:var(--muted);margin:9px 0 0}.primary,.secondary{width:100%;border:0;border-radius:28px;padding:14px 12px;font-size:14px;font-weight:800;cursor:pointer}.primary{background:var(--blue);color:white;margin-top:12px}.secondary{background:var(--green);color:white;margin-top:10px}.hidden{display:none!important}
+form .field{display:block;width:100%;padding:13px 12px;margin:9px 0;border:1px solid #cfe2f9;border-radius:10px;font:inherit;font-size:14px;background:white;color:var(--text)}textarea.field{min-height:78px;resize:vertical}form label{display:block;font-size:12px;color:#536f8b;margin:12px 0 5px}.order-head{background:#eaf6ff;border-radius:11px;padding:12px;margin-bottom:12px;font-size:13px;line-height:1.7}.order-head strong{color:var(--blue)}.back{border:0;background:transparent;color:var(--blue);font-weight:700;padding:8px 0;cursor:pointer}.notice{font-size:12px;line-height:1.5;color:#0756a5;background:#eaf6ff;padding:11px;border-radius:10px;margin-top:10px}footer{text-align:center;background:#eff7ff;color:#315d86;font-size:11px;line-height:1.6;padding:16px}
+</style>
+</head>
+<body><div class="page">
+<header><div class="brand">JOS<small>JASA ORANG SURUHAN</small></div><a class="admin" href="https://wa.me/6281990919227" target="_blank" rel="noopener">☏ Chat Admin<br>081990919227</a></header>
+<section class="hero"><h1>Booking Layanan JOS</h1><p>Pilih layanan, lihat rincian biaya, lalu lanjutkan pemesanan. Mudah dan transparan.</p></section>
+<main>
+<section id="catalog">
+<h2>Pilih layanan yang dibutuhkan</h2><p class="sub">Pilih kartu layanan di bawah. Anda bisa melihat pilihan pekerja, upah, biaya admin, dan total sebelum mengisi data pemesanan.</p>
+<div id="serviceGrid" class="service-grid">
+<button class="card" type="button" data-index="0"><span class="check">✓</span><span class="icon">🌿</span><span class="title">Potong Rumput</span><span class="meta">Perawatan rumput dan halaman</span><span class="price">Mulai Rp100.000</span></button>
+<button class="card" type="button" data-index="1"><span class="check">✓</span><span class="icon">🚚</span><span class="title">Pindahan</span><span class="meta">Kosan, rumah, kantor, opsi mobil</span><span class="price">Mulai Rp150.000</span></button>
+<button class="card" type="button" data-index="2"><span class="check">✓</span><span class="icon">📦</span><span class="title">TKBM / Bongkar Muat</span><span class="meta">Tenaga bongkar muat barang</span><span class="price">Mulai Rp150.000</span></button>
+<button class="card" type="button" data-index="3"><span class="check">✓</span><span class="icon">🏠</span><span class="title">Home Cleaning</span><span class="meta">Bersih-bersih rumah</span><span class="price">Mulai Rp150.000</span></button>
+<button class="card" type="button" data-index="4"><span class="check">✓</span><span class="icon">🛠️</span><span class="title">Pertukangan</span><span class="meta">Bantuan pekerjaan tukang</span><span class="price">Mulai Rp150.000</span></button>
+<button class="card" type="button" data-index="5"><span class="check">✓</span><span class="icon">🪟</span><span class="title">Kusen Aluminium</span><span class="meta">Pintu, jendela, kitchen set</span><span class="price">Mulai Rp150.000</span></button>
+<button class="card" type="button" data-index="6"><span class="check">✓</span><span class="icon">🛢️</span><span class="title">Cuci Toren</span><span class="meta">Pembersihan toren air</span><span class="price">Mulai Rp100.000</span></button>
+<button class="card" type="button" data-index="7"><span class="check">✓</span><span class="icon">💆</span><span class="title">Pijat Relaksasi</span><span class="meta">Pilih durasi pijat</span><span class="price">Mulai Rp125.000</span></button>
+<button class="card" type="button" data-index="8"><span class="check">✓</span><span class="icon">📦</span><span class="title">Jasa Packing</span><span class="meta">Bantuan mengemas barang</span><span class="price">Mulai Rp100.000</span></button>
+<button class="card" type="button" data-index="9"><span class="check">✓</span><span class="icon">🛵</span><span class="title">Pesan Antar</span><span class="meta">Pengantaran barang atau belanja</span><span class="price">Mulai Rp25.000</span></button>
+<button class="card" type="button" data-index="10"><span class="check">✓</span><span class="icon">🧰</span><span class="title">Jasa Umum</span><span class="meta">Bantuan pekerjaan lainnya</span><span class="price">Harga sesuai kebutuhan</span></button>
+<button class="card" type="button" data-index="11"><span class="check">✓</span><span class="icon">•••</span><span class="title">Jasa Lainnya</span><span class="meta">Ceritakan kebutuhan Anda</span><span class="price">Harga konsultasi</span></button>
+</div>
+<div id="config" class="panel hidden">
+<h3 id="configTitle">Atur kebutuhan layanan</h3>
+<div class="row"><label for="workers">Jumlah pekerja</label><select id="workers"><option value="1">1 pekerja</option><option value="2">2 pekerja</option><option value="3">3 pekerja</option><option value="4">4 pekerja</option></select></div>
+<div class="row"><label for="duration">Durasi / paket</label><select id="duration"></select></div>
+<div id="customPriceRow" class="row hidden"><label for="customPrice">Upah per pekerja (Rp)</label><input id="customPrice" type="number" min="0" step="5000" placeholder="Masukkan upah"></div>
+<div class="summary">
+<div class="sumrow"><span>Upah layanan</span><strong id="labor">Rp0</strong></div>
+<div class="sumrow"><span>Admin JOS (20%)</span><strong id="adminFee">Rp0</strong></div>
+<div class="sumrow total"><span>Perkiraan total</span><strong id="total">Rp0</strong></div>
+<p class="muted" id="priceNote">Total akan diperbarui sesuai pilihan Anda.</p>
+</div>
+<button id="continue" class="primary" type="button">Lanjut Isi Data Pemesanan →</button>
+</div>
+</section>
+<section id="order" class="hidden">
+<button class="back" id="back" type="button">← Kembali pilih layanan</button>
+<h2>Lengkapi data pemesanan</h2><p class="sub">Rincian layanan dan perkiraan biaya sudah diisi otomatis oleh sistem.</p>
+<div id="orderSummary" class="order-head"></div>
+<form id="bookingForm">
+<input id="name" class="field" placeholder="Nama lengkap *" autocomplete="name" required>
+<input id="phone" class="field" type="tel" placeholder="Nomor WhatsApp pemesan *" autocomplete="tel" required>
+<textarea id="address" class="field" placeholder="Alamat lengkap lokasi pekerjaan *" required></textarea>
+<label for="date">Tanggal pengerjaan *</label><input id="date" class="field" type="date" required>
+<label for="time">Jam yang diinginkan *</label><input id="time" class="field" type="time" required>
+<textarea id="notes" class="field" placeholder="Catatan tambahan: patokan alamat, ukuran pekerjaan, barang yang dipindahkan, kebutuhan khusus, dll."></textarea>
+<div class="notice">Biaya ini merupakan perkiraan awal. Admin JOS akan mengecek ketersediaan pekerja dan mengonfirmasi rincian akhir sebelum pesanan disetujui.</div>
+<button class="secondary" type="submit">Kirim Detail Booking via WhatsApp</button>
+</form>
+</section>
+</main>
+<footer>⚡ Proses mudah &nbsp; • &nbsp; ✓ Rincian biaya transparan &nbsp; • &nbsp; ☏ Admin JOS</footer>
+</div>
+<script>
+const services=[
+ {name:"Potong Rumput",icon:"🌿",desc:"Perawatan rumput dan halaman",base:100000,unit:"per pekerja / pekerjaan",packages:[["Area kecil",100000],["Area sedang",150000],["Area besar",200000]]},
+ {name:"Pindahan",icon:"🚚",desc:"Pindahan kos, rumah, atau kantor",base:150000,unit:"per pekerja",packages:[["Pindahan kosan",150000],["Pindahan rumah",180000],["Pindahan kantor",220000],["Pindahan kosan + mobil",150000,true],["Pindahan rumah + mobil",180000,true],["Pindahan kantor + mobil",220000,true]]},
+ {name:"TKBM / Bongkar Muat",icon:"📦",desc:"Tenaga bongkar muat barang",base:150000,unit:"per pekerja",packages:[["Bongkar muat ringan",150000],["Bongkar muat sedang",200000],["Bongkar muat berat",250000]]},
+ {name:"Home Cleaning",icon:"🏠",desc:"Bersih-bersih rumah",base:150000,unit:"per pekerja",packages:[["Pembersihan standar",150000],["Pembersihan menyeluruh",200000],["Pembersihan besar",250000]]},
+ {name:"Pertukangan",icon:"🛠️",desc:"Bantuan pekerjaan tukang",base:150000,unit:"per pekerja",packages:[["Pekerjaan ringan",150000],["Pekerjaan sedang",250000],["Pekerjaan berat",350000]]},
+ {name:"Kusen Aluminium",icon:"🪟",desc:"Pintu, jendela, kitchen set",base:150000,unit:"per pekerja / pekerjaan",packages:[["Perbaikan ringan",150000],["Pemasangan kusen/pintu",250000],["Kitchen set / pekerjaan khusus",350000]]},
+ {name:"Cuci Toren",icon:"🛢️",desc:"Pembersihan toren air",base:100000,unit:"per pekerjaan",packages:[["1 toren",100000],["2 toren",180000],["3 toren",250000]]},
+ {name:"Pijat Relaksasi",icon:"💆",desc:"Pilih durasi pijat",base:125000,unit:"per sesi",packages:[["60 menit",125000],["90 menit",175000],["120 menit",225000]],single:true},
+ {name:"Jasa Packing",icon:"📦",desc:"Bantuan mengemas barang",base:100000,unit:"per pekerja",packages:[["Packing ringan",100000],["Packing sedang",150000],["Packing banyak barang",200000]]},
+ {name:"Pesan Antar",icon:"🛵",desc:"Pengantaran barang atau belanja",base:25000,unit:"per pesanan",packages:[["Jarak dekat",25000],["Jarak sedang",40000],["Jarak jauh",60000]],single:true},
+ {name:"Jasa Umum",icon:"🧰",desc:"Bantuan pekerjaan lainnya",base:100000,unit:"per pekerja",packages:[["Pekerjaan ringan",100000],["Pekerjaan sedang",150000],["Pekerjaan khusus",200000]]},
+ {name:"Jasa Lainnya",icon:"•••",desc:"Layanan sesuai kebutuhan",base:0,unit:"diisi saat konsultasi",packages:[["Tentukan upah dengan admin",0]],custom:true}
+];
+let selected=null;
+const rupiah=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+const grid=document.getElementById('serviceGrid'), config=document.getElementById('config');
+grid.querySelectorAll('[data-index]').forEach(b=>{
+ b.addEventListener('click',()=>choose(Number(b.dataset.index),b));
+});
+function choose(i,button){
+ selected=services[i];document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));button.classList.add('selected');
+ document.getElementById('configTitle').textContent='Atur: '+selected.name;
+ const workers=document.getElementById('workers');workers.disabled=!!selected.single;workers.value='1';
+ const duration=document.getElementById('duration');duration.innerHTML='';
+ selected.packages.forEach((p,idx)=>{const o=document.createElement('option');o.value=idx;o.textContent=p[0]+' — '+(p[1]?rupiah(p[1]+(p[2]?350000:0))+(p[2]?' (1 pekerja + mobil)':''):'harga konsultasi');duration.appendChild(o)});
+ document.getElementById('customPriceRow').classList.toggle('hidden',!selected.custom);
+ config.classList.remove('hidden');updatePrice();config.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function updatePrice(){
+ if(!selected)return;
+ const p=selected.packages[Number(document.getElementById('duration').value)||0];
+ const workerCount=Number(document.getElementById('workers').value)||1;
+ const base=selected.custom?(Number(document.getElementById('customPrice').value)||0):p[1];
+ let labor=base*(selected.single?1:workerCount)+(p[2]?350000:0);
+ // Mobil pindahan is a vehicle fee; do not multiply the vehicle fee by the number of workers.
+ if(selected.vehicle && Number(document.getElementById('duration').value)===1) labor=350000+Math.max(0,workerCount-1)*150000;
+ const fee=Math.round(labor*.2),total=labor+fee;
+ document.getElementById('labor').textContent=labor?rupiah(labor):'Dikonfirmasi admin';
+ document.getElementById('adminFee').textContent=labor?rupiah(fee):'Dikonfirmasi admin';
+ document.getElementById('total').textContent=labor?rupiah(total):'Dikonfirmasi admin';
+ document.getElementById('priceNote').textContent='Harga paket dihitung per pekerja, kecuali layanan yang ditandai per sesi/pesanan. Admin 20% dihitung dari upah layanan. Untuk paket pindahan dengan mobil, tarif paket sudah mencakup tambahan mobil Rp350.000.';
+}
+document.getElementById('workers').addEventListener('change',updatePrice);document.getElementById('duration').addEventListener('change',updatePrice);document.getElementById('customPrice').addEventListener('input',updatePrice);
+document.getElementById('continue').addEventListener('click',()=>{
+ if(!selected){alert('Silakan pilih layanan.');return}
+ const p=selected.packages[Number(document.getElementById('duration').value)||0];
+ const workers=Number(document.getElementById('workers').value)||1;
+ const base=selected.custom?(Number(document.getElementById('customPrice').value)||0):p[1];
+ let labor=base*(selected.single?1:workers)+(p[2]?350000:0);
+ 
+ const fee=Math.round(labor*.2),total=labor+fee;
+ if(selected.custom&&!base){alert('Untuk Jasa Lainnya, silakan isi perkiraan upah yang sudah dibicarakan dengan admin terlebih dahulu.');return}
+ document.getElementById('orderSummary').innerHTML='<strong>Layanan:</strong> '+selected.name+'<br><strong>Paket:</strong> '+p[0]+'<br><strong>Jumlah pekerja:</strong> '+(selected.single?'1 sesi':workers+' orang')+'<br><strong>Upah:</strong> '+rupiah(labor)+'<br><strong>Admin 20%:</strong> '+rupiah(fee)+'<br><strong>Perkiraan total:</strong> '+rupiah(total);
+ document.getElementById('catalog').classList.add('hidden');document.getElementById('order').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('back').addEventListener('click',()=>{document.getElementById('order').classList.add('hidden');document.getElementById('catalog').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})});
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();const p=selected.packages[Number(document.getElementById('duration').value)||0],workers=Number(document.getElementById('workers').value)||1;
+ const base=selected.custom?(Number(document.getElementById('customPrice').value)||0):p[1];
+ let labor=base*(selected.single?1:workers)+(p[2]?350000:0);
+ const fee=Math.round(labor*.2),total=labor+fee;
+ const v=id=>document.getElementById(id).value.trim();
+ const message=['Halo Admin JOS, saya ingin melakukan booking.','',`Layanan: ${selected.name}`,`Paket: ${p[0]}`,`Jumlah pekerja: ${selected.single?'1 sesi/pesanan':workers+' orang'}`,`Upah layanan: ${rupiah(labor)}`,`Admin JOS (20%): ${rupiah(fee)}`,`Perkiraan total: ${rupiah(total)}`,'',`Nama pemesan: ${v('name')}`,`WhatsApp: ${v('phone')}`,`Alamat: ${v('address')}`,`Tanggal: ${v('date')}`,`Jam: ${v('time')}`,`Catatan: ${v('notes')||'-'}`,'','Mohon konfirmasi ketersediaan pekerja dan rincian biaya akhir. Terima kasih.'].join('\n');
+ window.open('https://wa.me/6281990919227?text='+encodeURIComponent(message),'_blank');
+});
+</script></body></html>
