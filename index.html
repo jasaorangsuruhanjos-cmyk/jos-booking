@@ -139,7 +139,11 @@ document.getElementById('bookingForm').addEventListener('submit',e=>{
 });
 </script>
  <script>
-navigator.serviceWorker.register('./service-worker.js');
-</script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./service-worker.js');
+  });
+}
+ </script>
 </body>
 </html>
