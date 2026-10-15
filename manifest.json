@@ -1,0 +1,20 @@
+{
+  "name": "JOS - Jasa Orang Suruhan",
+  "short_name": "JOS",
+  "description": "Booking layanan JOS",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#edf3f9",
+  "theme_color": "#0756a5",
+  "lang": "id-ID",
+  "icons": [
+    {
+      "src": "icons/jos-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
