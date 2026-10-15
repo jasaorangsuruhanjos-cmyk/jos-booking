@@ -153,6 +153,22 @@ document.getElementById('bookingForm').addEventListener('submit',e=>{
  const v=id=>document.getElementById(id).value.trim();
  const message=['Halo Admin JOS, saya ingin melakukan booking.','',`Layanan: ${selected.name}`,`Paket: ${p[0]}`,`Jumlah pekerja: ${selected.single?'1 sesi/pesanan':workers+' orang'}`,`Upah layanan: ${rupiah(labor)}`,`Admin JOS (20%): ${rupiah(fee)}`,`Perkiraan total: ${rupiah(total)}`,'',`Nama pemesan: ${v('name')}`,`WhatsApp: ${v('phone')}`,`Alamat: ${v('address')}`,`Tanggal: ${v('date')}`,`Jam: ${v('time')}`,`Catatan: ${v('notes')||'-'}`,'','Mohon konfirmasi ketersediaan pekerja dan rincian biaya akhir. Terima kasih.'].join('\n');
  window.open('https://wa.me/6281990919227?text='+encodeURIComponent(message),'_blank');
+fetch("https://script.google.com/macros/s/AKfycbwgv7pbfZykz0kUNGO6rBE7bYEZJCXwR0AheRXntOOxDgo_RNqMSgkZiLIggfox8Vfn/exec", {
+method: "POST",
+mode: "no-cors",
+headers: {
+"Content-Type": "text/plain;charset=utf-8"
+},
+body: JSON.stringify({
+nama: v('name'),
+layanan: selected.name + " - " + p[0],
+alamat: v('address'),
+tanggal: v('date'),
+jam: v('time'),
+whatsapp: v('phone')
+})
+}).catch(function(error) {
+console.log("Notifikasi gagal dikirim", error);
 });
 </script>
  <script>
