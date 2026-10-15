@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0756a5">
+ <link rel="manifest" href="./manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Booking Layanan JOS</title>
 <style>
 :root{--blue:#0756a5;--blue2:#1687dc;--pale:#eef7ff;--line:#d5e7fb;--text:#15314f;--muted:#647d99;--green:#08b77b;--orange:#ff9d24}
@@ -134,4 +137,9 @@ document.getElementById('bookingForm').addEventListener('submit',e=>{
  const message=['Halo Admin JOS, saya ingin melakukan booking.','',`Layanan: ${selected.name}`,`Paket: ${p[0]}`,`Jumlah pekerja: ${selected.single?'1 sesi/pesanan':workers+' orang'}`,`Upah layanan: ${rupiah(labor)}`,`Admin JOS (20%): ${rupiah(fee)}`,`Perkiraan total: ${rupiah(total)}`,'',`Nama pemesan: ${v('name')}`,`WhatsApp: ${v('phone')}`,`Alamat: ${v('address')}`,`Tanggal: ${v('date')}`,`Jam: ${v('time')}`,`Catatan: ${v('notes')||'-'}`,'','Mohon konfirmasi ketersediaan pekerja dan rincian biaya akhir. Terima kasih.'].join('\n');
  window.open('https://wa.me/6281990919227?text='+encodeURIComponent(message),'_blank');
 });
-</script></body></html>
+</script>
+ <script>
+navigator.serviceWorker.register('./service-worker.js');
+</script>
+</body>
+</html>
