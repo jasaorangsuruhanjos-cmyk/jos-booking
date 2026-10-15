@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#0756a5"/>
+  <circle cx="256" cy="190" r="95" fill="#ffffff"/>
+  <path d="M205 190 L240 225 L310 150" fill="none" stroke="#0756a5" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="350" font-size="100" font-weight="bold" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">JOS</text>
+  <text x="256" y="405" font-size="25" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif">JASA ORANG SURUHAN</text>
+</svg>
