@@ -18,6 +18,23 @@ main{padding:16px 13px 24px}h2{font-size:18px;color:var(--blue);margin:2px 2px 5
 form .field{display:block;width:100%;padding:13px 12px;margin:9px 0;border:1px solid #cfe2f9;border-radius:10px;font:inherit;font-size:14px;background:white;color:var(--text)}textarea.field{min-height:78px;resize:vertical}form label{display:block;font-size:12px;color:#536f8b;margin:12px 0 5px}.order-head{background:#eaf6ff;border-radius:11px;padding:12px;margin-bottom:12px;font-size:13px;line-height:1.7}.order-head strong{color:var(--blue)}.back{border:0;background:transparent;color:var(--blue);font-weight:700;padding:8px 0;cursor:pointer}.notice{font-size:12px;line-height:1.5;color:#0756a5;background:#eaf6ff;padding:11px;border-radius:10px;margin-top:10px}footer{text-align:center;background:#eff7ff;color:#315d86;font-size:11px;line-height:1.6;padding:16px}
 </style>
 </head>
+ <div id="splash" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#064787,#1687dc);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;text-align:center;font-family:Arial,sans-serif">
+  <div style="width:110px;height:110px;border-radius:25px;background:white;color:#0756a5;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;box-shadow:0 8px 25px #00345a55">JOS</div>
+  <h2 style="color:white;margin:22px 0 6px;font-size:25px">JASA ORANG SURUHAN</h2>
+  <p style="margin:0;font-size:14px">Booking Layanan Jadi Lebih Mudah</p>
+  <div style="margin-top:28px;width:35px;height:35px;border:4px solid #ffffff55;border-top-color:white;border-radius:50%;animation:josSpin .8s linear infinite"></div>
+  <style>@keyframes josSpin{to{transform:rotate(360deg)}}</style>
+</div>
+<script>
+setTimeout(function(){
+  var splash=document.getElementById('splash');
+  if(splash){
+    splash.style.transition='opacity .5s';
+    splash.style.opacity='0';
+    setTimeout(function(){splash.remove()},500);
+  }
+},1800);
+</script>
 <body><div class="page">
 <header><div class="brand">JOS<small>JASA ORANG SURUHAN</small></div><a class="admin" href="https://wa.me/6281990919227" target="_blank" rel="noopener">☏ Chat Admin<br>081990919227</a></header>
 <section class="hero"><h1>Booking Layanan JOS</h1><p>Pilih layanan, lihat rincian biaya, lalu lanjutkan pemesanan. Mudah dan transparan.</p></section>
